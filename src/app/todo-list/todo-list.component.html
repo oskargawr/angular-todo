@@ -1,0 +1,19 @@
+<app-add-todo-form (addTodo)="addTodo($event)"></app-add-todo-form>
+
+<app-alert *ngIf="errorMessage" [errorMessage]="errorMessage" (clearMessage)="clearErrorMessage()"></app-alert>
+
+<div class="mt-5">
+    <h4>Zadania: </h4>
+    <ul class="list-group todos-list">
+        <ng-container *ngFor="let todo of todos; index as i">
+            <app-todo [todo]="todo" [index]="i" (delete)="deleteTodo(i)" (changeStatus)="changeTodoStatus($event)"></app-todo>
+        </ng-container>
+    </ul>
+    <h5 *ngIf="todos.length === 0">Brak zadan</h5>
+</div>
+
+<div [ngSwitch]="testSwitchCase">
+    <div *ngSwitchCase="'tak'">Jestem w case 1</div>
+    <div *ngSwitchCase="'nie'">Jestem w case 2</div>
+    <div *ngSwitchDefault>Jestem w default</div>
+</div>
