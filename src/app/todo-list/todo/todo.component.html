@@ -8,6 +8,7 @@
     <span class="todo-item" [ngClass]="{'text-decoration-line-through': todo.isComplete}">{{ index + 1 }}. {{ todo.name | firstLetterUppercase }}</span>
 
     <button type="button" class="btn btn-danger btn-sm mx-2" (click)="toggleModal()">Usuń</button>
+    <button type="button" class="btn btn-info btn-sm mx-2" (click)="navigateToDetails()">Szczegoly</button>
 </li>
 
 <!-- <p> {{ todo.name }}</p>
@@ -24,14 +25,14 @@
     {{ item.key }}: {{ item.value }}
 </p> -->
 
-<p>{{ 1.3 | number: '' : 'pl' }} </p>
+<!-- <p>{{ 1.3 | number: '' : 'pl' }} </p>
 <p>{{ 0.25 | percent: '' : 'pl' }} </p>
 <p>{{ 10 | currency: 'PLN' : 'code' : ''  : 'pl' }} </p>
-<p>{{ '2023-03-01' | date: 'shortDate' : '' : 'pl' }} </p>
+<p>{{ '2023-03-01' | date: 'shortDate' : '' : 'pl' }} </p> -->
 
 <app-modal *ngIf="openModal" (close)="toggleModal()" [title]="'Czy na pewno chcesz usunac zadanie o numerze ' + (index + 1) + '?'">
     <div class="d-flex justify-content-end" #modalDiv test>
-        <input type="checkbox" #check (change)="0">
+        <!-- <input type="checkbox" #check (change)="0"> -->
         <button class="btn btn-danger btn-sm mx-2" (click)="deleteTodo()">Usuń</button>
         <button class="btn btn-info btn-sm" (click)="toggleModal()">Anuluj</button>
     </div>

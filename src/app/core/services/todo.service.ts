@@ -18,6 +18,10 @@ export class TodoService {
     return this._todos.slice(); // zwracanie kopii zamiast referencji
   }
 
+  getTodo(index: number): Todo {
+    return this.todos[index];
+  }
+
   addTodo(name: string): void {
     this._todos.push({name, isComplete: false});
     this.saveToLocalStorage();

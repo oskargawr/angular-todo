@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   // @ViewChildren(TodoComponent) todoComps!: TodoComponent;
   todos: Todo[] = this.todoService.todos;
   errorMessage = ''; // typescript sam sie domysla jaki typ ma zmienna na podstawie przypisanej wartosci
-  testSwitchCase = "tak";
+  // testSwitchCase = "tak";
   sub!: Subscription;
   
   

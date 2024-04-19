@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Todo } from '../../shared/interfaces/todo.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -26,9 +27,9 @@ export class TodoComponent {
   //   console.log("todo zostal usuniety")
   //   clearTimeout(this.timeout);
   // }
-  // constructor() {
-  //   console.log(this.todo);
-  // }
+  constructor(private router: Router) {
+
+  }
 
   // ngOnInit(): void {
   //   this.timeout = setTimeout(() => {
@@ -60,5 +61,9 @@ export class TodoComponent {
 
   deleteTodo(): void {
     this.delete.emit();
+  }
+
+  navigateToDetails() {
+    this.router.navigate(['/todo', this.index]);
   }
 }
