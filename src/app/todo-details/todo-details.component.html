@@ -1,10 +1,15 @@
 <div class="mt-3">
-    <p *ngIf="!todo">Nie ma zadania o podanym numerze indexu</p>
+  <p *ngIf="!todo">Nie ma zadania o podanym numerze indexu</p>
 
-    <div *ngIf="todo">
-        <p>Czy zadanie zostalo ukonczone: {{ todo.isComplete ? 'tak' : 'nie' }}</p>
+  <div *ngIf="todo">
+    <p>Czy zadanie zostalo ukonczone: {{ todo.isComplete ? "tak" : "nie" }}</p>
 
-        <p>Przejdz do kolejnego zadania:</p>
-        <button class="btn btn-sm btn-info" (click)="navigateToNextTodo()">Nastepne zadanie!</button>
-    </div>
+    <p>Przejdz do kolejnego zadania lub wroc do poprzedzniej strony:</p>
+    <button class="btn btn-sm btn-info mx-2" (click)="navigateBack()">
+      Powrot
+    </button>
+    <button class="btn btn-sm btn-info" (click)="navigateToNextTodo()">
+      Nastepne zadanie!
+    </button>
+  </div>
 </div>

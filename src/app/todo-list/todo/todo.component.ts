@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Todo } from '../../shared/interfaces/todo.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -27,43 +27,48 @@ export class TodoComponent {
   //   console.log("todo zostal usuniety")
   //   clearTimeout(this.timeout);
   // }
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
 
   }
-
+  
   // ngOnInit(): void {
-  //   this.timeout = setTimeout(() => {
-  //     console.log("timeout");
+    //   this.timeout = setTimeout(() => {
+      //     console.log("timeout");
       
-  //   }, 3000);
-  // }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log(changes)
-  // }
-
-  // ngDoCheck(): void {
-  //   console.log("ngDoCheck zostal wykonany")
-  //   // console.log(this.todo)
-  // }
-
-  // ngAfterViewInit(): void {
-  //   console.log(this.li)
-  // }
-
-  changeTodoStatus(): void {
-    this.changeStatus.emit(this.index);
-  }
-
-  toggleModal(): void {
-    this.openModal = !this.openModal;
-  }
-
-  deleteTodo(): void {
-    this.delete.emit();
-  }
-
-  navigateToDetails() {
-    this.router.navigate(['/todo', this.index]);
-  }
+      //   }, 3000);
+      // }
+      
+      // ngOnChanges(changes: SimpleChanges): void {
+        //   console.log(changes)
+        // }
+        
+        // ngDoCheck(): void {
+          //   console.log("ngDoCheck zostal wykonany")
+          //   // console.log(this.todo)
+          // }
+          
+          // ngAfterViewInit(): void {
+            //   console.log(this.li)
+            // }
+            
+            changeTodoStatus(): void {
+              this.changeStatus.emit(this.index);
+            }
+            
+            toggleModal(): void {
+              this.openModal = !this.openModal;
+            }
+            
+            deleteTodo(): void {
+              this.delete.emit();
+            }
+            
+            navigateToDetails() {
+              const navigatitonExtras: NavigationExtras = {
+                relativeTo: this.route,
+                // state: { example: 'test'}
+                // queryParams: { id: this.index, name: 'test'}
+              }
+              this.router.navigate([this.index], navigatitonExtras);
+            }
 }
