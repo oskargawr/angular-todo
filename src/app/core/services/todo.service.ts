@@ -3,29 +3,33 @@ import { Todo } from '../../shared/interfaces/todo.interface';
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodoService {
-
-  private _todos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')!) : [];
+  // private _todos: Todo[] = localStorage.getItem('todos')
+  //   ? JSON.parse(localStorage.getItem('todos')!)
+  //   : [];
+  private _todos: Todo[] = [];
 
   todoChanged = new Subject<Todo[]>();
 
-
-  constructor() { }
+  constructor() {}
 
   public get todos() {
     return this._todos.slice(); // zwracanie kopii zamiast referencji
+  }
+
+  public set todos(arrTodos: Todo[]) {
+    this._todos = [...arrTodos];
+    this.todoChanged.next(this.todos);
   }
 
   getTodo(index: number): Todo {
     return this.todos[index];
   }
 
-  addTodo(name: string): void {
-    this._todos.push({name, isComplete: false});
-    this.saveToLocalStorage();
-
+  addTodo(todo: Todo): void {
+    this._todos.push(todo);
     this.todoChanged.next(this.todos);
   }
 
@@ -42,8 +46,8 @@ export class TodoService {
   changeTodoStatus(index: number) {
     this._todos[index] = {
       ...this.todos[index],
-      isComplete: !this.todos[index].isComplete
-    }
+      isComplete: !this.todos[index].isComplete,
+    };
     this.saveToLocalStorage();
     this.todoChanged.next(this.todos);
   }

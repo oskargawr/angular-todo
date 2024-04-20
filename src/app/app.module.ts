@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { ChildAComponent } from './todo-list/child-a/child-a.component';
 import { ChildBComponent } from './todo-list/child-b/child-b.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localePl);
 
@@ -39,16 +40,15 @@ registerLocaleData(localePl);
     PageNotFoundComponent,
     TodoDetailsComponent,
     ChildAComponent,
-    ChildBComponent
+    ChildBComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'pl',
+    },
   ],
-  providers: [{
-    provide: LOCALE_ID, useValue: 'pl'
-  }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
