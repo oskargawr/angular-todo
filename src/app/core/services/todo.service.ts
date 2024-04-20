@@ -37,9 +37,8 @@ export class TodoService {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  deleteTodo(index: number): void {
-    this._todos = this.todos.filter((todo, i) => i !== index);
-    this.saveToLocalStorage();
+  deleteTodo(id: number): void {
+    this._todos = this.todos.filter((todo, i) => todo.id !== id);
     this.todoChanged.next(this.todos);
   }
 

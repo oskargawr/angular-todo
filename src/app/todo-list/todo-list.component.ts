@@ -81,8 +81,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.errorMessage = '';
   }
 
-  deleteTodo(i: number) {
-    this.todoService.deleteTodo(i);
+  deleteTodo(id: number) {
+    this.todoApiService.deleteTodo(id).subscribe({
+      error: (err) => {
+        this.errorMessage = 'Wystapil blad podczas pobierania danych z serwera';
+      },
+    });
   }
 
   changeTodoStatus(index: number) {
